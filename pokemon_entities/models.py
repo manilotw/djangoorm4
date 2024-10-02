@@ -21,3 +21,5 @@ class PokemonEntity(models.Model):
 
     def __str__(self):
         return f'{self.lat}, {self.lon}, {self.appeared_at}, {self.disappeared_at}'
+
+
