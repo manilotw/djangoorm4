@@ -3,7 +3,6 @@ from django.db import models  # noqa F401
 class Pokemon(models.Model):
     title = models.CharField(
         max_length=200,
-        blank=True,
         verbose_name='Название покемона'
     )
     previous_evolution = models.ForeignKey(
@@ -36,6 +35,7 @@ class Pokemon(models.Model):
     def __str__(self):
         return f'{self.title}'
 
+
 class PokemonEntity(models.Model):
     pokemon = models.ForeignKey(
         Pokemon,
@@ -43,15 +43,12 @@ class PokemonEntity(models.Model):
         verbose_name='Покемон'
     )
     lat = models.FloatField(
-        null=True,
         verbose_name='Широта'
     )
     lon = models.FloatField(
-        null=True,
         verbose_name='Долгота'
     )
     appeared_at = models.DateTimeField(
-        null=True,
         verbose_name='Время появления'
     )
     disappeared_at = models.DateTimeField(
@@ -80,4 +77,4 @@ class PokemonEntity(models.Model):
     )
 
     def __str__(self):
-        return f'{self.pokemon}'
+        return f'{self.pokemon} at {self.lat}, {self.lon}'
