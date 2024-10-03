@@ -2,6 +2,7 @@ from django.db import models  # noqa F401
 
 class Pokemon(models.Model):
     title = models.CharField(max_length=200, blank=True)
+    previous_evolution = models.ForeignKey('self',null=True, blank=True,on_delete=models.DO_NOTHING)
     title_en = models.CharField(max_length=200, blank=True)
     title_jp = models.CharField(max_length=200, blank=True)
     description = models.TextField(blank=True)
