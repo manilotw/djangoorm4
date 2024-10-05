@@ -36,7 +36,7 @@ def show_all_pokemons(request):
         add_pokemon(
             folium_map, pokemon.lat,
             pokemon.lon,
-            request.build_absolute_uri(pokemon.pokemon.image.url)
+            request.build_absolute_uri(pokemon.pokemon_entities.image.url)
             )
     pokemons = Pokemon.objects.all()
     
@@ -64,7 +64,7 @@ def show_pokemon(request, pokemon_id):
         return HttpResponseNotFound('<h1>Такой покемон не найден</h1>')  
 
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
-    pokemon_entities = PokemonEntity.objects.filter(appeared_at__lt=current_time,disappeared_at__gt=current_time,pokemon=pokemon)
+    pokemon_entities = PokemonEntity.objects.filter(appeared_at__lt=current_time,disappeared_at__gt=current_time,pokemon_entities=pokemon)
     entities = []
     for pokemon_entity in pokemon_entities:
         entities.append({
@@ -80,7 +80,7 @@ def show_pokemon(request, pokemon_id):
         add_pokemon(
             folium_map, pokemon_entity.lat,
             pokemon_entity.lon,
-            request.build_absolute_uri(pokemon_entity.pokemon.image.url)
+            request.build_absolute_uri(pokemon_entity.pokemon_entities.image.url)
             )
     pokemon_data = {
         'pokemon_id' : pokemon_id,
