@@ -97,7 +97,7 @@ def show_pokemon(request, pokemon_id):
         }    
 
     next_evolutions = pokemon.next_evolutions.all()  
-    if next_evolutions.exists():
+    if next_evolutions.first():
         pokemon_data['next_evolution'] = []
         for next_evolution in next_evolutions:
             pokemon_data['next_evolution'] = {
